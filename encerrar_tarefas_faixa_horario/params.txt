@@ -1,3 +1,3 @@
 NOME=Salsicha
-NUM_REPETICOES=23:40 (alterado denovo 😅)
+NUM_REPETICOES=23:45 (alterado denovo ❤️)
 DESCRICAO=Some description here
