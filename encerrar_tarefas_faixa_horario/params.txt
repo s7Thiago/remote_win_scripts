@@ -1,3 +1,3 @@
-NOME=Teste_NOME
-NUM_REPETICOES=17
+NOME=Salsicha
+NUM_REPETICOES=23:55 (alterado denovo 🤣😭🤡)
 DESCRICAO=Some description here
