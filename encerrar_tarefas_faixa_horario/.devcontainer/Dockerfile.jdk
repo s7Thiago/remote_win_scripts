@@ -1,0 +1,17 @@
+FROM openjdk:21-slim-bullseye
+
+LABEL maintainer="Thiago Silva"
+LABEL email="thyagosousasilva@gmail.com"
+
+RUN apt-get update && \
+    apt-get install -y maven git python3 curl lsof iputils-ping htop telnet && \
+    apt-get clean && \
+    rm -rf /var/lib/apt/lists/*
+
+ENV JAVA_OPTS="-Duser.timezone=UTC"
+
+WORKDIR /workspace
+
+EXPOSE 8080
+
+CMD [ "tail", "-f", "/dev/null" ]

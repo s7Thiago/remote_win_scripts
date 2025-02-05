@@ -1,0 +1,20 @@
+version: '3.1'
+
+networks:
+  kill_pid_app:
+    driver: bridge
+
+services:
+  python:
+    build:
+      context: ..
+      dockerfile: .devcontainer/Dockerfile.jdk
+    container_name: kill-user-processes
+    image: s7thiago/kill-user-processes:latest
+    networks:
+      - kill_pid_app
+    environment:
+      - PIP_ROOT_USER_ACTION=ignore
+    volumes:
+      - ../:/workspace # Montar o código para desenvolvimento no container
+    command: ["sh", "-c", "trap 'docker-compose stop' EXIT; while :; do sleep 1; done"]

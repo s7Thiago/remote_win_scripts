@@ -1,0 +1,23 @@
+version: '3.7'
+
+networks:
+  ollama-network:
+    driver: bridge
+
+services:
+  ollama-ui:
+    image: ghcr.io/open-webui/open-webui:main
+    container_name: ollama-ui
+    ports:
+      - "3000:8080"
+    volumes:
+      - open-webui:/app/backend/data
+    extra_hosts:
+      - "host.docker.internal:host-gateway"
+    restart: always
+    networks:
+      - ollama-network
+
+volumes:
+  open-webui:
+    driver: local
