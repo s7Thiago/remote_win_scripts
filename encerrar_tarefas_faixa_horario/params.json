@@ -4,6 +4,7 @@
     "SEGUNDOS_REPETIR": 2,
     "WHITELIST": [
                 "system_taskbar",
+                "whatsapp",
                 "windows.autokill",
                 "windows-autokill",
                 "autokill",
