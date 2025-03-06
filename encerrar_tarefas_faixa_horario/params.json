@@ -1,6 +1,6 @@
 {
     "HORARIO_LIVRE_INICIO": "07:00",
-    "HORARIO_LIVRE_LIMITE": "20:00",
+    "HORARIO_LIVRE_LIMITE": "21:48",
     "SEGUNDOS_REPETIR": 300,
     "WHITELIST": [
                 "system_taskbar",
