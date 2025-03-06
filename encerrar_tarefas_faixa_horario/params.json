@@ -1,7 +1,7 @@
 {
     "HORARIO_LIVRE_INICIO": "07:00",
-    "HORARIO_LIVRE_LIMITE": "21:48",
-    "SEGUNDOS_REPETIR": 300,
+    "HORARIO_LIVRE_LIMITE": "20:30",
+    "SEGUNDOS_REPETIR": 180,
     "WHITELIST": [
                 "system_taskbar",
                 "whatsapp",
