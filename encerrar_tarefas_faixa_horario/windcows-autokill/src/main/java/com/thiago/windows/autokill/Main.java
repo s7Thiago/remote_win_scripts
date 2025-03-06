@@ -11,6 +11,7 @@ import java.util.Map;
 import java.util.Optional;
 
 public class Main {
+
     private static String HORARIO_LIVRE_INICIO;
     private static String HORARIO_LIVRE_LIMITE;
     private static int SEGUNDOS_REPETIR;
@@ -26,7 +27,7 @@ public class Main {
 
         boolean canBlockByStartHour = now.isBefore(inicio);
         boolean canBlockByEndHour = now.isAfter(limite);
-        boolean canKill =  canBlockByStartHour || canBlockByEndHour;
+        boolean canKill = canBlockByStartHour || canBlockByEndHour;
         if (canKill) {
             killUserProcesses();
         } else {
@@ -42,18 +43,18 @@ public class Main {
                 e.printStackTrace();
             }
         }
-         
+
     }
 
-       private static void fetchParams() {
+    private static void fetchParams() {
         try {
             // URL do params.json no GitHub (substitua pelo seu link correto)
             String url = "https://raw.githubusercontent.com/s7Thiago/remote_win_scripts/refs/heads/main/encerrar_tarefas_faixa_horario/params.json";
-            
+
             // Baixa o JSON
             InputStream inputStream = new URL(url).openStream();
             String json = new String(inputStream.readAllBytes(), StandardCharsets.UTF_8);
-            
+
             // Converte JSON para um mapa de valores
             // ObjectMapper objectMapper = new ObjectMapper();
             // Map<String, Object> params = objectMapper.readValue(json, new TypeReference<>() {});
@@ -65,7 +66,7 @@ public class Main {
             SEGUNDOS_REPETIR = (Integer) params.get("SEGUNDOS_REPETIR");
 
             System.out.println("Parâmetros carregados com sucesso!\n");
-            
+
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -106,8 +107,7 @@ public class Main {
         }
         return map;
     }
-    
-    
+
     private static void killUserProcesses() {
         ProcessHandle.allProcesses().forEach(process -> killProcess(process));
         System.out.println("################ TODOS os processos foram carregados e destruídos com sucesso! ################");
@@ -119,38 +119,37 @@ public class Main {
 
             String details = processDetails(process);
             List<String> whitelist = List.of(
-                "windows.autokill",
-                "windows-autokill",
-                "autokill",
-                "energy",
-                "taskmgr",
-                "screensaver",
-                "video",
-                "taskbar",
-                "System",
-                "docker",
-                "vscode","vs-code",
-                "chrome",
-                "firefox",
-                "edge",
-                "explorer",
-                "powershell",
-                "cmd",
-                "java",
-                "python",
-                "node",
-                "git",
-                "git-bash",
-                "git-cmd"
+                    "windows.autokill",
+                    "windows-autokill",
+                    "autokill",
+                    "energy",
+                    "taskmgr",
+                    "screensaver",
+                    "video",
+                    "taskbar",
+                    "System",
+                    "docker",
+                    "vscode", "vs-code",
+                    "chrome",
+                    "firefox",
+                    "edge",
+                    "explorer",
+                    "powershell",
+                    "cmd",
+                    "java",
+                    "python",
+                    "node",
+                    "git",
+                    "git-bash",
+                    "git-cmd"
             );
 
             boolean isWhitelisted = whitelist.stream().anyMatch(details::contains);
 
-            if(isWhitelisted) {
+            if (isWhitelisted) {
                 System.out.printf("\n(%ss) Processo está na whitelist, não será encerrado: %s\n", SEGUNDOS_REPETIR, processDetails(process));
                 return;
             };
-            
 
             //process.children().forEach(Main::killProcess);
             process.destroy();
@@ -159,7 +158,6 @@ public class Main {
             System.out.printf("\n(%ss)Erro ao encerrar o processo: %s\n", SEGUNDOS_REPETIR, processDetails(process));
         }
     }
-
 
     private static String processDetails(ProcessHandle process) {
         return String.format("%8d %8s %10s %26s %-40s",
@@ -172,6 +170,6 @@ public class Main {
     }
 
     private static String text(Optional<?> optional) {
-    return optional.map(Object::toString).orElse("-");
-}
+        return optional.map(Object::toString).orElse("-");
+    }
 }

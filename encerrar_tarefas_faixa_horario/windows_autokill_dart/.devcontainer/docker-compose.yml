@@ -1,0 +1,17 @@
+version: '3.1'
+
+networks:
+  kill_processes_net:
+      driver: bridge
+
+services:
+  auto_kill_processes_dart_dev_container:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: dart-autokill-processes
+    networks:
+      - kill_processes_net
+    volumes:
+      - ../:/workspace
+    command: ["sh", "-c", "trap 'docker-compose stop' EXIT; while :; do sleep 1; done"]
