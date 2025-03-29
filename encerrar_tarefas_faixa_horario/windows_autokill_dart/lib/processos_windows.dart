@@ -1,5 +1,7 @@
 import 'dart:io';
 
+import 'package:app/ler_parametros_github.dart';
+
 Future<List<Processo>> getProcessos() async {
   final result = await Process.run('tasklist', ['/fo', 'csv', '/nh']);
   if (result.exitCode == 0) {
@@ -59,7 +61,8 @@ void _encerrarProcesso(Processo processo, List<String> whitelist) {
   }
 }
 
-void _desligarMaquinaReiniciar({bool reiniciar = false}) async {
+void _desligarMaquinaReiniciar({required AutoKillParams params}) async {
+  bool reiniciar = params.modoEncerramento == ModoEncerramento.restart;
 // Configurando os parâmetros
   // /s = desligar
   // /r = reiniciar
@@ -72,7 +75,7 @@ void _desligarMaquinaReiniciar({bool reiniciar = false}) async {
   ];
   
   try {
-    final result = await Process.run('shutdown', parametros);
+    final result = await Process.run('shutdown-aaa', parametros);
     if (result.exitCode == 0) {
       print(reiniciar ? 'Reiniciando o sistema...' : 'Desligando o sistema...');
     } else {
@@ -92,9 +95,9 @@ void _reiniciarMaquina() {
   }
 }
 
-void encerrarProcessos(List<Processo> processos, List<String> whitelist) {
+void encerrarProcessos(List<Processo> processos, List<String> whitelist, AutoKillParams params) {
   // reiniciar a máquina
-  _desligarMaquinaReiniciar(reiniciar: true);
+  _desligarMaquinaReiniciar(params: params);
 
   // for (var p in processos) {
   //   _encerrarProcesso(p, whitelist);

@@ -38,12 +38,18 @@ Future<AutoKillParams> getParams() async {
   print('whitelist: ${data['WHITELIST']}');
   print('==============================================\n');
 
+  var modoEncerramento = ModoEncerramento.values.firstWhere(
+      (element) =>
+          element.toString() == 'ModoEncerramento.${data['MODO_ENCERRAMENTO'].toString().toLowerCase()}',
+      orElse: () => ModoEncerramento.shutdown);
+
   return AutoKillParams(
     horarioLivreInicio: data['HORARIO_LIVRE_INICIO'],
     horarioLivreLimite: data['HORARIO_LIVRE_LIMITE'],
     intervaloRepeticoes: data['SEGUNDOS_REPETIR'],
-    modoEncerramento: data['MODO_ENCERRAMENTO'],
-    whitelist:(data['WHITELIST'] as List<dynamic>).map((e) => e.toString()).toList(),
+    modoEncerramento: modoEncerramento,
+    whitelist:
+        (data['WHITELIST'] as List<dynamic>).map((e) => e.toString()).toList(),
   );
 }
 
@@ -54,7 +60,8 @@ class AutoKillParams {
   final String horarioLivreLimite;
   final int intervaloRepeticoes;
   final List<String> whitelist;
-  final ModoEncerramento modoEncerramento; // RESTART, SHUTDOWN, LOGOFF (NÃO IMPLEMENTADO)
+  final ModoEncerramento
+      modoEncerramento; // RESTART, SHUTDOWN, LOGOFF (NÃO IMPLEMENTADO)
 
   AutoKillParams({
     this.horarioLivreInicio = '07:00',
