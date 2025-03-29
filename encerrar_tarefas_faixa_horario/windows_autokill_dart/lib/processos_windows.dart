@@ -75,7 +75,7 @@ void _desligarMaquinaReiniciar({required AutoKillParams params}) async {
   ];
   
   try {
-    final result = await Process.run('shutdown-aaa', parametros);
+    final result = await Process.run('shutdown', parametros);
     if (result.exitCode == 0) {
       print(reiniciar ? 'Reiniciando o sistema...' : 'Desligando o sistema...');
     } else {
