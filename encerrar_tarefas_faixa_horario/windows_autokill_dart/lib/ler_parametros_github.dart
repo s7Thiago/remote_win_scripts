@@ -34,6 +34,7 @@ Future<AutoKillParams> getParams() async {
   print('inicio: ${data['HORARIO_LIVRE_INICIO']}');
   print('limite: ${data['HORARIO_LIVRE_LIMITE']}');
   print('intervalo: ${data['SEGUNDOS_REPETIR']}');
+  print('modo: ${data['MODO_ENCERRAMENTO']}');
   print('whitelist: ${data['WHITELIST']}');
   print('==============================================\n');
 
@@ -41,20 +42,25 @@ Future<AutoKillParams> getParams() async {
     horarioLivreInicio: data['HORARIO_LIVRE_INICIO'],
     horarioLivreLimite: data['HORARIO_LIVRE_LIMITE'],
     intervaloRepeticoes: data['SEGUNDOS_REPETIR'],
-    whitelist: (data['WHITELIST'] as List<dynamic>).map((e) => e.toString()).toList(),
+    modoEncerramento: data['MODO_ENCERRAMENTO'],
+    whitelist:(data['WHITELIST'] as List<dynamic>).map((e) => e.toString()).toList(),
   );
 }
+
+enum ModoEncerramento { restart, shutdown, logoff }
 
 class AutoKillParams {
   final String horarioLivreInicio;
   final String horarioLivreLimite;
   final int intervaloRepeticoes;
   final List<String> whitelist;
+  final ModoEncerramento modoEncerramento; // RESTART, SHUTDOWN, LOGOFF (NÃO IMPLEMENTADO)
 
   AutoKillParams({
     this.horarioLivreInicio = '07:00',
     this.horarioLivreLimite = '23:00',
     this.intervaloRepeticoes = 15,
+    this.modoEncerramento = ModoEncerramento.shutdown,
     this.whitelist = const ["system_taskbar", "taskbar", "system"],
   });
 }

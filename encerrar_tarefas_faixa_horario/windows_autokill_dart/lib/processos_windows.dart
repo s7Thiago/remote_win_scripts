@@ -59,10 +59,46 @@ void _encerrarProcesso(Processo processo, List<String> whitelist) {
   }
 }
 
-void encerrarProcessos(List<Processo> processos, List<String> whitelist) {
-  for (var p in processos) {
-    _encerrarProcesso(p, whitelist);
+void _desligarMaquinaReiniciar({bool reiniciar = false}) async {
+// Configurando os parâmetros
+  // /s = desligar
+  // /r = reiniciar
+  // /f = forçar fechamento de programas
+  // /t 0 = tempo de espera de 0 segundos
+  final List<String> parametros = [
+    reiniciar ? '/r' : '/s',
+    '/f',
+    '/t', '0'
+  ];
+  
+  try {
+    final result = await Process.run('shutdown', parametros);
+    if (result.exitCode == 0) {
+      print(reiniciar ? 'Reiniciando o sistema...' : 'Desligando o sistema...');
+    } else {
+      print('Erro ao ${reiniciar ? "reiniciar" : "desligar"} o sistema: ${result.stderr}');
+    }
+  } catch (e) {
+    print('Exceção ao executar o comando: $e');
   }
+}
+
+void _reiniciarMaquina() {
+  final result = Process.runSync('shutdown', ['/r', '/t', '0']);
+  if (result.exitCode == 0) {
+    print('Comando de reinicialização enviado com sucesso');
+  } else {
+    print('Erro ao tentar reiniciar o computador: ${result.stderr}');
+  }
+}
+
+void encerrarProcessos(List<Processo> processos, List<String> whitelist) {
+  // reiniciar a máquina
+  _desligarMaquinaReiniciar(reiniciar: true);
+
+  // for (var p in processos) {
+  //   _encerrarProcesso(p, whitelist);
+  // }
 }
 
 class Processo {

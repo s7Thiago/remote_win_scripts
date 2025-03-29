@@ -38,7 +38,7 @@ void main(List<String> arguments) async {
   if (!isFreeTimeInterval) {
     print(
         '(${paramsGithub.intervaloRepeticoes}s) [${paramsGithub.horarioLivreInicio} - ${paramsGithub.horarioLivreLimite}] Horário bloqueado. iniciando encerramento de processos');
-    processos.encerrarProcessos(listaProcessos, paramsGithub.whitelist);
+    //processos.encerrarProcessos(listaProcessos, paramsGithub.whitelist);
   } else {
     print(
         '(${paramsGithub.intervaloRepeticoes}s) [${paramsGithub.horarioLivreInicio} - ${paramsGithub.horarioLivreLimite}] Horário liberado. nenhum processo será encerrado');
