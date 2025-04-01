@@ -33,12 +33,19 @@ void main(List<String> arguments) async {
   int numero = 1;
   print('Executando a ${numero++} vez');
   bool isFreeTimeInterval = verificarHorario(
-      paramsGithub.horarioLivreInicio, paramsGithub.horarioLivreLimite);
+    paramsGithub.horarioLivreInicio,
+    paramsGithub.horarioLivreLimite,
+  );
+  bool isBlockedTimeInterval = !isFreeTimeInterval;
 
-  if (!isFreeTimeInterval) {
+  if (isBlockedTimeInterval) {
     print(
         '(${paramsGithub.intervaloRepeticoes}s) [${paramsGithub.horarioLivreInicio} - ${paramsGithub.horarioLivreLimite}] Horário bloqueado. iniciando encerramento de processos');
-    processos.encerrarProcessos(listaProcessos, paramsGithub.whitelist, paramsGithub);
+    processos.encerrarProcessos(
+      listaProcessos,
+      paramsGithub.whitelist,
+      paramsGithub,
+    );
   } else {
     print(
         '(${paramsGithub.intervaloRepeticoes}s) [${paramsGithub.horarioLivreInicio} - ${paramsGithub.horarioLivreLimite}] Horário liberado. nenhum processo será encerrado');
