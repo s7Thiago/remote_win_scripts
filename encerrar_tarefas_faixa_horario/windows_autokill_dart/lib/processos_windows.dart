@@ -48,16 +48,16 @@ void _encerrarProcesso(Processo processo, List<String> whitelist) {
 
   // Verifica se o processo está na whitelist
   if (isWhitelisted) {
-    print('* O processo ${processo.executavel} está na whitelist');
+    // print('* O processo ${processo.executavel} está na whitelist');
     return;
   }
 
   final result = Process.runSync('taskkill', ['/F', "/PID", '${processo.pid}']);
   if (result.exitCode == 0) {
-    print('Processo ${processo.executavel} encerrado com sucesso');
+    // print('Processo ${processo.executavel} encerrado com sucesso');
   } else {
-    print(
-        'Erro ao encerrar o processo ${processo.executavel}: ${result.stderr}');
+    // print(
+    //     'Erro ao encerrar o processo ${processo.executavel}: ${result.stderr}');
   }
 }
 
@@ -89,9 +89,9 @@ void _desligarMaquinaReiniciar({required AutoKillParams params}) async {
 void _reiniciarMaquina() {
   final result = Process.runSync('shutdown', ['/r', '/t', '0']);
   if (result.exitCode == 0) {
-    print('Comando de reinicialização enviado com sucesso');
+    // print('Comando de reinicialização enviado com sucesso');
   } else {
-    print('Erro ao tentar reiniciar o computador: ${result.stderr}');
+    // print('Erro ao tentar reiniciar o computador: ${result.stderr}');
   }
 }
 

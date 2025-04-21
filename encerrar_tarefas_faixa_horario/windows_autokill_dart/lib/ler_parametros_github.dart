@@ -31,12 +31,12 @@ Future<AutoKillParams> getParams() async {
     return AutoKillParams();
   }
 
-  print('inicio: ${data['HORARIO_LIVRE_INICIO']}');
-  print('limite: ${data['HORARIO_LIVRE_LIMITE']}');
-  print('intervalo: ${data['SEGUNDOS_REPETIR']}');
-  print('modo: ${data['MODO_ENCERRAMENTO']}');
-  print('whitelist: ${data['WHITELIST']}');
-  print('==============================================\n');
+  // print('inicio: ${data['HORARIO_LIVRE_INICIO']}');
+  // print('limite: ${data['HORARIO_LIVRE_LIMITE']}');
+  // print('intervalo: ${data['SEGUNDOS_REPETIR']}');
+  // print('modo: ${data['MODO_ENCERRAMENTO']}');
+  // print('whitelist: ${data['WHITELIST']}');
+  // print('==============================================\n');
 
   var modoEncerramento = ModoEncerramento.values.firstWhere(
       (element) =>
