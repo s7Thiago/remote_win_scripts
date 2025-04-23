@@ -2,7 +2,7 @@
     "HORARIO_LIVRE_INICIO": "12:30",
     "HORARIO_LIVRE_LIMITE": "22:45",
     "SEGUNDOS_REPETIR": 300,
-    "MODO_ENCERRAMENTO": "RESTART",
+    "MODO_ENCERRAMENTO": "SHUTDOWN",
     "WHITELIST": [
                 "system_taskbar",
                 "whatsapp",
