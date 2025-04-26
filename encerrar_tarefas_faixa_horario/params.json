@@ -1,7 +1,7 @@
 {
     "HORARIO_LIVRE_INICIO": "12:20",
     "HORARIO_LIVRE_LIMITE": "22:03",
-    "SEGUNDOS_REPETIR": 300,0
+    "SEGUNDOS_REPETIR": 300,
     "MODO_ENCERRAMENTO": "SHUTDOWN",
     "WHITELIST": [
                 "system_taskbar",
